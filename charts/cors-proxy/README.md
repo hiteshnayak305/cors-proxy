@@ -1,7 +1,5 @@
 # Helm Chart - [`cors-proxy`](https://hiteshnayak305.github.io/cors-proxy)
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cors-proxy)](https://artifacthub.io/packages/search?repo=cors-proxy)
-
 This helm chart provides deployment of cors-proxy to bypass cors strict requests.
 
 ## Installing this chart

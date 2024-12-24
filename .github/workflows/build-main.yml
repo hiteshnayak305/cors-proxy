@@ -1,0 +1,57 @@
+name: build-main
+on:
+  workflow_dispatch:
+    inputs: {}
+  push:
+    branches: ["main", "master"]
+permissions: write-all
+jobs:
+  build-app:
+    runs-on: "ubuntu-latest"
+    steps:
+      - id: test
+        name: test
+        run: echo '[TODO] Run tests for proxy server'
+  build-docker:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: .
+          push: true
+          tags: ghcr.io/hiteshnayak305/cors-proxy:latest
+  build-helm:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Install helm
+        uses: azure/setup-helm@v4.2.0
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Helm Dependency Update
+        run: helm dependency update charts/cors-proxy
+
+      - name: Helm Lint
+        run: helm lint charts/cors-proxy
+
+      - name: Helm Template
+        run: helm template --debug test charts/cors-proxy

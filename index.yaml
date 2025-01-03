@@ -5,6 +5,35 @@ entries:
       artifacthub.io/category: security
       artifacthub.io/changes: |
         - kind: added
+          description: readme and license
+        - kind: changed
+          description: upgrade common library
+      artifacthub.io/containsSecurityUpdates: "false"
+    apiVersion: v2
+    appVersion: 0.2.0
+    created: "2025-01-03T18:35:06.447165982Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts
+      version: 3.6.0
+    description: A Helm chart for CORS proxy server
+    digest: 83be44cd71490e4297de4d0dbed902e5c9b69fe4dc678d5924edb0d2dc2ab2c0
+    home: https://github.com/hiteshnayak305/cors-proxy
+    icon: https://raw.githubusercontent.com/hiteshnayak305/cors-proxy/main/logo.png
+    maintainers:
+    - email: hiteshnayak305@noreply.github.com
+      name: hiteshnayak305
+    name: cors-proxy
+    sources:
+    - https://github.com/hiteshnayak305/cors-proxy
+    type: application
+    urls:
+    - https://github.com/hiteshnayak305/cors-proxy/releases/download/cors-proxy-0.2.0/cors-proxy-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/category: security
+      artifacthub.io/changes: |
+        - kind: added
           description: Release v1
       artifacthub.io/containsSecurityUpdates: "false"
     apiVersion: v2
@@ -28,4 +57,4 @@ entries:
     urls:
     - https://github.com/hiteshnayak305/cors-proxy/releases/download/cors-proxy-0.1.0/cors-proxy-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-24T21:06:24.264303741Z"
+generated: "2025-01-03T18:35:06.44718111Z"

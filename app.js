@@ -43,7 +43,7 @@ const jsdocOptions = {
                 name: "Apache 2.0",
                 url: "https://www.apache.org/licenses/LICENSE-2.0.html",
             },
-            version: "0.2.0",
+            version: "1.0.0",
         },
         servers: [
             {

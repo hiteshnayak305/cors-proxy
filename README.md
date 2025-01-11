@@ -23,6 +23,17 @@ dependencies:
     condition: cors-proxy.enabled
 ```
 
+## Usage
+
+Pull and run docker image
+
+```console
+docker pull ghcr.io/hiteshnayak305/cors-proxy:$version
+docker run -p 3000:3000 ghcr.io/hiteshnayak305/cors-proxy:$version
+```
+
+You can access application at `localhost:3000/proxy?url=<destination-url>`.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE)

@@ -1,6 +1,13 @@
 {
     "categories": [
         {
+            "title": "## 🚨 Breaking",
+            "labels": [
+                "refactor",
+                "breaking"
+            ]
+        },
+        {
             "title": "## 🚀 Features",
             "labels": [
                 "feature",
@@ -17,11 +24,26 @@
         {
             "title": "## 🧪 Tests",
             "labels": [
-                "test"
+                "test",
+                "tests"
             ]
         },
         {
-            "title": "## 📦 Other",
+            "title": "## 📚 Documentation",
+            "labels": [
+                "doc",
+                "docs"
+            ]
+        },
+        {
+            "title": "## 🧹 Development",
+            "labels": [
+                "chore",
+                "chores"
+            ]
+        },
+        {
+            "title": "## 📦 Other ",
             "labels": []
         }
     ]

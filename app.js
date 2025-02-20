@@ -15,7 +15,7 @@ app.disable("x-powered-by");
 
 const origin = process.env.ORIGIN || "*";
 let corsOptions = {
-    origin: origin, // Compliant
+  origin: origin, // Compliant
 };
 
 app.use(cors(corsOptions));
@@ -30,34 +30,34 @@ app.use("/proxy", proxyRouter);
 app.use("/metrics", metricsRouter);
 
 const jsdocOptions = {
-    definition: {
-        openapi: "3.0.3",
-        info: {
-            title: "Node Proxy",
-            description:
-                "A proxy server to resolve cors issue directly accessing public rest api s",
-            contact: {
-                email: "hiteshnayak305@noreply.github.com",
-            },
-            license: {
-                name: "Apache 2.0",
-                url: "https://www.apache.org/licenses/LICENSE-2.0.html",
-            },
-            version: "1.0.0",
-        },
-        servers: [
-            {
-                url: "/",
-            },
-        ],
-        tags: [
-            {
-                name: "Public",
-                description: "Public endpoints",
-            },
-        ],
+  definition: {
+    openapi: "3.0.3",
+    info: {
+      title: "Node Proxy",
+      description:
+        "A proxy server to resolve cors issue directly accessing public rest api s",
+      contact: {
+        email: "hiteshnayak305@noreply.github.com",
+      },
+      license: {
+        name: "Apache 2.0",
+        url: "https://www.apache.org/licenses/LICENSE-2.0.html",
+      },
+      version: "1.0.1",
     },
-    apis: ["../**/routes/*.js"], // files containing annotations as above
+    servers: [
+      {
+        url: "/",
+      },
+    ],
+    tags: [
+      {
+        name: "Public",
+        description: "Public endpoints",
+      },
+    ],
+  },
+  apis: ["../**/routes/*.js"], // files containing annotations as above
 };
 const openapiSpecification = swaggerJsdoc(jsdocOptions);
 console.log(openapiSpecification);

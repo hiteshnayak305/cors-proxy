@@ -2,8 +2,8 @@ apiVersion: v2
 name: cors-proxy
 description: A Helm chart for CORS proxy server
 type: application
-version: 1.0.0
-appVersion: 1.0.0
+version: 1.0.1
+appVersion: 1.0.1
 home: https://github.com/hiteshnayak305/cors-proxy
 icon: https://raw.githubusercontent.com/hiteshnayak305/cors-proxy/main/logo.png
 sources:
@@ -17,9 +17,7 @@ dependencies:
     version: 3.7.1
 annotations:
   artifacthub.io/category: security
-  artifacthub.io/containsSecurityUpdates: "false"
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
-    - kind: added
-      description: readme and license
     - kind: changed
       description: upgrade common library

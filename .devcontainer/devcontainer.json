@@ -14,20 +14,30 @@
             "version": "22"
         }
     },
+    "mounts": [
+        "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+    ],
+    "runArgs": [
+        "--network=host"
+    ],
     "remoteUser": "vscode",
-    "postStartCommand": "npm install && helm dependency update ./charts/cors-proxy",
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
+    "postStartCommand": "bash .devcontainer/post-start.sh",
     "customizations": {
         "vscode": {
             "extensions": [
                 "github.vscode-github-actions",
                 "ms-azuretools.vscode-containers",
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
                 "sonarsource.sonarlint-vscode",
                 "shd101wyy.markdown-preview-enhanced",
                 "esbenp.prettier-vscode",
                 "eamodio.gitlens",
                 "christian-kohler.path-intellisense"
             ],
-            "settings": {}
+            "settings": {
+                "terminal.integrated.gpuAcceleration": "off"
+            }
         }
     }
 }

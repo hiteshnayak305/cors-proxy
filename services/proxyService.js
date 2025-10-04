@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance.js";
 import { getCachedResponse, setCachedResponse } from "../utils/cache.js";
 import { logger } from "../middlewares/logger.js";
 import { cacheHitsTotal } from "../middlewares/metrics.js";
@@ -32,11 +32,10 @@ export const handleProxyRequest = async (req, res) => {
       url: targetUrl,
       headers,
       data: ["POST", "PUT", "PATCH"].includes(method) ? req.body : undefined,
-      timeout: 10000,
-      validateStatus: () => true,
+      requestId: req.id
     };
 
-    const response = await axios(axiosConfig);
+    const response = await axiosInstance(axiosConfig);
 
     if (method === "GET" && response.status === 200) {
       setCachedResponse(targetUrl, response.data);

@@ -1,3 +1,2 @@
 GET http://localhost:3001/metrics
 Accept: text/plain; charset=utf-8; version=0.0.4
-User-Agent: rest-client

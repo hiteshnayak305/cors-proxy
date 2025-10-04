@@ -1,8 +1,10 @@
 import winston from "winston";
 import morgan from "morgan";
 
+const level = process.env.LOG_LEVEL || "info";
+
 export const logger = winston.createLogger({
-  level: "info",
+  level: level,
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.colorize(),

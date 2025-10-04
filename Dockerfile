@@ -2,6 +2,7 @@ FROM node:24-alpine
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV ORIGIN="*"
+ENV LOG_LEVEL="info"
 WORKDIR /usr/src/app
 COPY package.json ./
 COPY package-lock.json ./

@@ -1,66 +1,51 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const swaggerUi = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc");
-const cors = require("cors");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from 'url';
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
-const indexRouter = require("./routes/index");
-const proxyRouter = require("./routes/proxy");
-const metricsRouter = require("./routes/metrics");
+// Import Configs
+import { swaggerOptions } from "./config/swaggerConfig.js";
+import { corsOptions } from "./config/corsConfig.js";
+
+// Import Middlewares
+import { requestIdMiddleware } from "./middlewares/requestId.js";
+import { morganMiddleware } from "./middlewares/logger.js";
+import { rateLimiter } from "./middlewares/rateLimiter.js";
+import { metricsMiddleware } from "./middlewares/metrics.js";
+
+// Import Routers
+import indexRouter from "./routes/indexRouter.js";
+import proxyRouter from "./routes/proxyRouter.js";
+import metricsRouter from "./routes/metricsRouter.js";
 
 const app = express();
 app.disable("x-powered-by");
 
-const origin = process.env.ORIGIN || "*";
-let corsOptions = {
-  origin: origin, // Compliant
-};
-
-app.use(cors(corsOptions));
-app.use(logger("dev"));
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "public")));
 
+// Middlewares
+app.use(requestIdMiddleware);
+app.use(morganMiddleware);
+app.use(rateLimiter);
+app.use(metricsMiddleware);
+
+// Routers
 app.use("/", indexRouter);
 app.use("/proxy", proxyRouter);
 app.use("/metrics", metricsRouter);
 
-const jsdocOptions = {
-  definition: {
-    openapi: "3.0.3",
-    info: {
-      title: "Node Proxy",
-      description:
-        "A proxy server to resolve cors issue directly accessing public rest api s",
-      contact: {
-        email: "hiteshnayak305@noreply.github.com",
-      },
-      license: {
-        name: "Apache 2.0",
-        url: "https://www.apache.org/licenses/LICENSE-2.0.html",
-      },
-      version: "1.0.1",
-    },
-    servers: [
-      {
-        url: "/",
-      },
-    ],
-    tags: [
-      {
-        name: "Public",
-        description: "Public endpoints",
-      },
-    ],
-  },
-  apis: ["../**/routes/*.js"], // files containing annotations as above
-};
-const openapiSpecification = swaggerJsdoc(jsdocOptions);
-console.log(openapiSpecification);
-app.use("/openapi", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+// Swagger Setup
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-module.exports = app;
+export default app;

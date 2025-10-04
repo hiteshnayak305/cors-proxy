@@ -64,9 +64,30 @@ const router = express.Router();
  *   patch:
  *     $ref: '#/paths/~1proxy/post'
  *   delete:
- *     $ref: '#/paths/~1proxy/post'
+*     summary: Proxy any HTTP request
+*     description: |
+*       Proxies requests to any target URL, forwarding method, headers, query parameters, and body.
+*       Supports GET, POST, PUT, PATCH, DELETE, etc.
+*     parameters:
+*       - in: query
+*         name: url
+*         schema:
+*           type: string
+*         required: true
+*         description: The target URL to proxy the request to.
+*     responses:
+*       204:
+*         description: Successful response from the target API
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*       400:
+*         description: Missing URL parameter
+*       502:
+*         description: Bad Gateway / upstream error
  *   options:
- *     $ref: '#/paths/~1proxy/post'
+ *     $ref: '#/paths/~1proxy/delete'
  */
 router.all("/", handleProxyRequest);
 

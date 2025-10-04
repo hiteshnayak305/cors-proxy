@@ -1,25 +1,52 @@
 #!/usr/bin/env node
 
-import app from "../app.js";
-import { logger } from "../middlewares/logger.js";
+import app from "../src/app.js";
+import { logger } from "../src/middlewares/logger.js";
 
-var PORT = normalizePort(process.env.PORT || '3000');
-app.listen(PORT, () => {
-  logger.info(`🚀 Proxy server running on port ${PORT}`);
+const startTime = Date.now();
+const ENV = process.env.NODE_ENV || "development";
+const PORT = normalizePort(process.env.PORT || "3000");
+
+const server = app.listen(PORT, () => {
+  const bootTime = Date.now() - startTime;
+
+  logger.info("===========================================");
+  logger.info("🚀 Proxy Server Started Successfully");
+  logger.info("===========================================");
+  logger.info(`🌐 Environment     : ${ENV}`);
+  logger.info(`🧠 Node Version    : ${process.version}`);
+  logger.info(`📦 Working Dir     : ${process.cwd()}`);
+  logger.info(`⚙️  Listening Port  : ${PORT}`);
+  logger.info(`⏱️  Startup Time    : ${bootTime}ms`);
+  logger.info("-------------------------------------------");
+
+  // Log the application URL
+  const appUrl = `http://localhost:${PORT}`;
+  logger.info(`🌍 Application is running at: ${appUrl}`);
+
+  logger.info("===========================================");
 });
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
+  const port = parseInt(val, 10);
+  if (isNaN(port)) return val;
+  if (port >= 0) return val;
   return false;
 }
+
+// Graceful shutdown
+process.on("unhandledRejection", (reason) => {
+  logger.error("💥 Unhandled Promise Rejection:", reason);
+  process.exit(1);
+});
+process.on("uncaughtException", (err) => {
+  logger.error("💥 Uncaught Exception:", err);
+  process.exit(1);
+});
+process.on("SIGTERM", () => {
+  logger.info("🛑 SIGTERM received. Shutting down gracefully...");
+  server.close(() => {
+    logger.info("✅ Server closed.");
+    process.exit(0);
+  });
+});

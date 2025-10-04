@@ -1,5 +1,44 @@
+# Node dependencies
+node_modules
 **/node_modules
-**/npm-debug.log
-*node_modules*
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Local environment
+.env
+.env.*
+!env.example
+
+# Build and packaging
+dist
+build
+coverage
+*.tgz
+
+# Logs
+logs
+*.log
+*.tmp
+
+# Helm
+charts
 **/charts
-*charts*
+
+# Dev Containers (VSCode / GitHub Codespaces)
+.devcontainer
+**/.devcontainer
+
+# Git and IDE
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+*.swp
+
+# OS / Editor garbage
+Thumbs.db
+*.bak
+*.orig

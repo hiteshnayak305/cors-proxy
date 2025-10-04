@@ -15,6 +15,7 @@
         }
     },
     "mounts": [
+        "source=node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
         "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
     ],
     "runArgs": [
@@ -33,10 +34,12 @@
                 "shd101wyy.markdown-preview-enhanced",
                 "esbenp.prettier-vscode",
                 "eamodio.gitlens",
-                "christian-kohler.path-intellisense"
+                "christian-kohler.path-intellisense",
+                "humao.rest-client"
             ],
             "settings": {
-                "terminal.integrated.gpuAcceleration": "off"
+                "terminal.integrated.gpuAcceleration": "off",
+                "rest-client.previewResponsePanelTakeFocus": false
             }
         }
     }

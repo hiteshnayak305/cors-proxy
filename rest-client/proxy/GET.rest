@@ -1,0 +1,4 @@
+GET http://localhost:3000/proxy
+    ?url=https://jsonplaceholder.typicode.com/posts
+Accept: application/json; charset=utf-8
+User-Agent: rest-client

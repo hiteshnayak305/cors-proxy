@@ -1,0 +1,12 @@
+PUT http://localhost:3000/proxy
+    ?url=https://jsonplaceholder.typicode.com/posts/1
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+User-Agent: rest-client
+
+{
+  "id": 1,
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Node.js Development",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "BASE_IMAGE": "ubuntu"
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        }
+    },
+    "remoteUser": "vscode",
+    "postStartCommand": "npm install && helm dependency update ./charts/cors-proxy",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.vscode-github-actions",
+                "ms-azuretools.vscode-containers",
+                "sonarsource.sonarlint-vscode",
+                "shd101wyy.markdown-preview-enhanced",
+                "esbenp.prettier-vscode",
+                "eamodio.gitlens",
+                "christian-kohler.path-intellisense"
+            ],
+            "settings": {}
+        }
+    }
+}

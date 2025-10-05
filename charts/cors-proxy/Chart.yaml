@@ -19,5 +19,7 @@ annotations:
   artifacthub.io/category: security
   artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
+    - kind: security
+      description: upgrade base image to node 24 alpine lts
     - kind: changed
-      description: upgrade common library
+      description: upgraded common library to 4.3.0

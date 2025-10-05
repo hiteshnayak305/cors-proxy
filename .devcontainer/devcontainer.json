@@ -15,13 +15,16 @@
         }
     },
     "mounts": [
-        "source=node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
-        "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+        "source=cors_proxy_node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+        "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.config/helm,target=/home/vscode/.config/helm,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.config/helm,target=/home/vscode/.cache/helm,type=bind,consistency=cached"
     ],
     "runArgs": [
         "--network=host"
     ],
     "remoteUser": "vscode",
+    "initializeCommand": "ssh-add",
     "postCreateCommand": "bash .devcontainer/post-create.sh",
     "postStartCommand": "bash .devcontainer/post-start.sh",
     "customizations": {

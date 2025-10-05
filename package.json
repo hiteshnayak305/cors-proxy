@@ -1,6 +1,6 @@
 {
   "name": "cors-proxy",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "type": "module",
   "private": true,
   "scripts": {

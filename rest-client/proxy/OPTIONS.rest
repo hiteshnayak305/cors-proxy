@@ -1,0 +1,2 @@
+OPTIONS http://localhost:3000/proxy
+    ?url=https://jsonplaceholder.typicode.com/posts

@@ -1,0 +1,8 @@
+PATCH http://localhost:3000/proxy
+    ?url=https://jsonplaceholder.typicode.com/posts/1
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "title": "foo"
+}

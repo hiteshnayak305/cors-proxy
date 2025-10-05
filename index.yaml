@@ -4,6 +4,35 @@ entries:
   - annotations:
       artifacthub.io/category: security
       artifacthub.io/changes: |
+        - kind: security
+          description: upgrade base image to node 24 alpine lts
+        - kind: changed
+          description: upgraded common library to 4.3.0
+      artifacthub.io/containsSecurityUpdates: "true"
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2025-10-05T13:43:48.158329691Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s-labs.github.io/helm-charts
+      version: 4.3.0
+    description: A Helm chart for CORS proxy server
+    digest: d6825b6b2765c9cfee31179c76ae064c9f3328e4c449f2dd1dfc75daa9a1726e
+    home: https://github.com/hiteshnayak305/cors-proxy
+    icon: https://raw.githubusercontent.com/hiteshnayak305/cors-proxy/main/logo.png
+    maintainers:
+    - email: hiteshnayak305@noreply.github.com
+      name: hiteshnayak305
+    name: cors-proxy
+    sources:
+    - https://github.com/hiteshnayak305/cors-proxy
+    type: application
+    urls:
+    - https://github.com/hiteshnayak305/cors-proxy/releases/download/cors-proxy-1.2.0/cors-proxy-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/category: security
+      artifacthub.io/changes: |
         - kind: changed
           description: upgrade common library
       artifacthub.io/containsSecurityUpdates: "true"
@@ -113,4 +142,4 @@ entries:
     urls:
     - https://github.com/hiteshnayak305/cors-proxy/releases/download/cors-proxy-0.1.0/cors-proxy-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-20T18:50:10.554276083Z"
+generated: "2025-10-05T13:43:48.158352464Z"

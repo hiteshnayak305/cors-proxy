@@ -25,7 +25,8 @@ export const handleProxyRequest = async (req, res) => {
   try {
     logger.info(`[${req.id}] Proxying ${method} → ${targetUrl}`);
 
-    const headers = { ...req.headers, host: undefined };
+    const { host, 'content-length': _, 'transfer-encoding': __, ...safeHeaders } = req.headers;
+    const headers = safeHeaders;
 
     const axiosConfig = {
       method,

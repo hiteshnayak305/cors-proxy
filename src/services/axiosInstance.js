@@ -4,11 +4,13 @@ import { logger } from "../middlewares/logger.js";
 // Headers to mask in logs
 const SENSITIVE_HEADERS = ["authorization", "cookie"];
 
-// Utility to mask headers
-const maskHeaders = (headers) => {
-    const masked = { ...headers };
-    for (const key of SENSITIVE_HEADERS) {
-        if (masked[key]) masked[key] = "[MASKED]";
+/**
+ * Mask sensitive headers (case-insensitive)
+ */
+const maskHeaders = (headers = {}) => {
+    const masked = {};
+    for (const [key, value] of Object.entries(headers)) {
+        masked[key] = SENSITIVE_HEADERS.includes(key.toLowerCase()) ? "[MASKED]" : value;
     }
     return masked;
 };

@@ -1,7 +1,7 @@
 # ---------------------------
 # Stage 1: Build Stage
 # ---------------------------
-FROM node:24 AS builder
+FROM node:25 AS builder
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -18,7 +18,7 @@ COPY ./src ./src
 # ---------------------------
 # Stage 2: Production Stage
 # ---------------------------
-FROM node:24-alpine
+FROM node:25-alpine
 
 # Create non-root user
 RUN addgroup -S app && adduser -S app -G app
